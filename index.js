@@ -249,7 +249,7 @@ function connect (req, opts, fn) {
     } else if ('PROXY' == type || 'HTTPS' == type) {
       // use an HTTP or HTTPS proxy
       // http://dev.chromium.org/developers/design-documents/secure-web-proxy
-      var proxyURL = ('HTTPS' === type ? 'https' : 'http') + '://' + parts[1];
+      var proxyURL = ('HTTPS' === type ? 'https' : 'http') + '://' + (self.proxy.auth ? self.proxy.auth + '@' : '') + parts[1];
       var proxy = Object.assign({}, self.proxy, parse(proxyURL));
       if (secure) {
         agent = new HttpsProxyAgent(proxy);
